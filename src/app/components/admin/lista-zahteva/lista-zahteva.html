@@ -1,0 +1,104 @@
+<!-- Admin pregled svih zahteva u Material tabeli -->
+<div class="lista">
+  <div class="naslov-red">
+    <mat-icon>inbox</mat-icon>
+    <h2>Pristigli zahtevi</h2>
+    @if (!ucitavanje) {
+      <span class="brojac">{{ prikazaniZahtevi.length }}</span>
+    }
+  </div>
+
+  <!-- Dugmad za filter po statusu (menjaju query parametar u adresi) -->
+  <div class="filteri">
+    @for (filter of filteri; track filter.vrednost) {
+      <button
+        mat-stroked-button
+        [class.aktivan]="aktivanFilter === filter.vrednost"
+        (click)="postaviFilter(filter.vrednost)">
+        {{ filter.naziv }}
+      </button>
+    }
+  </div>
+
+  @if (ucitavanje) {
+    <div class="centar"><mat-spinner diameter="40"></mat-spinner></div>
+  } @else if (prikazaniZahtevi.length === 0) {
+    <p class="prazno">Nema zahteva za prikaz.</p>
+  } @else {
+    <div class="tabela-okvir">
+      <table mat-table [dataSource]="prikazaniZahtevi" class="tabela">
+
+        <!-- Kolona sa slikom stampaca -->
+        <ng-container matColumnDef="slika">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let z">
+            <img [src]="slika(z.modelStampaca)" [alt]="z.modelStampaca" class="red-slika" />
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="idStampaca">
+          <th mat-header-cell *matHeaderCellDef>ID stampaca</th>
+          <td mat-cell *matCellDef="let z">{{ z.idStampaca }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="korisnik">
+          <th mat-header-cell *matHeaderCellDef>Korisnik</th>
+          <td mat-cell *matCellDef="let z">{{ z.ime }} {{ z.prezime }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="model">
+          <th mat-header-cell *matHeaderCellDef>Model</th>
+          <td mat-cell *matCellDef="let z">{{ z.modelStampaca }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let z">
+            <!-- @switch bira boju oznake; tekst preko custom "status" pipe-a -->
+            @switch (z.status) {
+              @case ('odobren')    { <span class="oznaka zelena">{{ z.status | status }}</span> }
+              @case ('dostavljen') { <span class="oznaka plava">{{ z.status | status }}</span> }
+              @case ('odbijen')    { <span class="oznaka crvena">{{ z.status | status }}</span> }
+              @case ('u_obradi')   { <span class="oznaka zuta">{{ z.status | status }}</span> }
+              @default             { <span class="oznaka siva">{{ z.status | status }}</span> }
+            }
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="datum">
+          <th mat-header-cell *matHeaderCellDef>Datum</th>
+          <td mat-cell *matCellDef="let z">{{ z.datum | date:'dd.MM.yyyy.' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="akcije">
+          <th mat-header-cell *matHeaderCellDef>Akcije</th>
+          <td mat-cell *matCellDef="let z">
+            <!-- Promena statusa direktno iz tabele (otvara meni sa statusima) -->
+            <button mat-icon-button color="accent" [matMenuTriggerFor]="meni" title="Promeni status">
+              <mat-icon>published_with_changes</mat-icon>
+            </button>
+            <mat-menu #meni="matMenu">
+              @for (s of statusi; track s.vrednost) {
+                <button mat-menu-item (click)="promeniStatus(z, s.vrednost)">{{ s.naziv }}</button>
+              }
+            </mat-menu>
+
+            <button mat-icon-button color="accent" (click)="dostavi(z)" title="Dostavi (isporuka)"
+                    [disabled]="z.status === 'dostavljen'">
+              <mat-icon>local_shipping</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="otvori(z)" title="Detalji">
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="obrisi(z)" title="Obrisi">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="prikazaneKolone"></tr>
+        <tr mat-row *matRowDef="let row; columns: prikazaneKolone"></tr>
+      </table>
+    </div>
+  }
+</div>

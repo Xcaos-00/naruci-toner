@@ -1,0 +1,22 @@
+<!-- Gornja traka (Material toolbar) -->
+<mat-toolbar class="traka">
+  <!-- Logo (klik vodi na pocetnu formu) -->
+  <a class="logo" routerLink="/">
+    <mat-icon>print</mat-icon>
+    <span>Naruci Toner</span>
+  </a>
+
+  <!-- Razmak koji gura dugme skroz desno -->
+  <span class="razmak"></span>
+
+  <!-- Samo jedno dugme: ako je prijavljen -> Odjava, inace -> Admin prijava -->
+  @if (prijavljen) {
+    <button mat-flat-button (click)="odjava()" class="desno">
+      <mat-icon>logout</mat-icon> Odjava
+    </button>
+  } @else {
+    <a mat-flat-button routerLink="/admin/login" class="desno">
+      <mat-icon>login</mat-icon> Admin prijava
+    </a>
+  }
+</mat-toolbar>

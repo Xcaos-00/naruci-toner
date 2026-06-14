@@ -1,0 +1,32 @@
+<!-- Stranica detalja jednog zahteva -->
+<div class="detalji">
+  <button mat-button (click)="nazad()">&larr; Nazad na listu</button>
+
+  @if (ucitavanje) {
+    <div class="centar"><mat-spinner diameter="40"></mat-spinner></div>
+  } @else if (zahtev) {
+    <app-zahtev-red
+      [zahtev]="zahtev"
+      [slika]="slika"
+      (promenaStatusa)="naPromenuStatusa($event)">
+    </app-zahtev-red>
+
+    <!-- Isporuka: dugme otvara dijalog (kolicina + SERVIS + transfer) -->
+    <mat-card class="isporuka">
+      <h3><mat-icon>local_shipping</mat-icon> Isporuka tonera</h3>
+      @if (zahtev.status === 'dostavljen') {
+        <p class="vec">Ovaj zahtev je vec dostavljen.</p>
+      } @else {
+        <p class="napomena">
+          Klikni „Dostavi" da uneses kolicinu i isporucis toner iz magacina SERVIS.
+          (Isto se desava i kad u statusu izabereš „Dostavljen".)
+        </p>
+        <button mat-raised-button color="primary" (click)="otvoriDostavu()">
+          <mat-icon>check_circle</mat-icon> Dostavi (isporuka)
+        </button>
+      }
+    </mat-card>
+  } @else {
+    <p>Zahtev nije pronadjen.</p>
+  }
+</div>

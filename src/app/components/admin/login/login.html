@@ -1,0 +1,38 @@
+<!-- Login forma za administratora -->
+<div class="login-stranica">
+  <mat-card class="login-kartica">
+    <div class="login-zaglavlje">
+      <div class="ikona"><mat-icon>admin_panel_settings</mat-icon></div>
+      <h2>Admin prijava</h2>
+      <p>Prijavite se da biste upravljali zahtevima</p>
+    </div>
+
+    <mat-card-content>
+      <form [formGroup]="forma" (ngSubmit)="prijava()">
+        <mat-form-field appearance="outline" class="polje">
+          <mat-label>Korisnicko ime</mat-label>
+          <mat-icon matPrefix>person</mat-icon>
+          <input matInput formControlName="korisnik" autocomplete="username" />
+          @if (f['korisnik'].touched && f['korisnik'].hasError('required')) {
+            <mat-error>Unesite korisnicko ime.</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="polje">
+          <mat-label>Lozinka</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input matInput type="password" formControlName="lozinka" autocomplete="current-password" />
+          @if (f['lozinka'].touched && f['lozinka'].hasError('required')) {
+            <mat-error>Unesite lozinku.</mat-error>
+          }
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" class="dugme">
+          <mat-icon>login</mat-icon> Prijavi se
+        </button>
+
+        <p class="pomoc">Test nalog: <b>admin</b> / <b>admin123</b></p>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

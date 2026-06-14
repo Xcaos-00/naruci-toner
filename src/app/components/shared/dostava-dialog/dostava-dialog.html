@@ -1,0 +1,54 @@
+<h2 mat-dialog-title>Isporuka tonera</h2>
+
+<mat-dialog-content>
+  @if (ucitavanje) {
+    <div class="centar"><mat-spinner diameter="34"></mat-spinner></div>
+  } @else if (!toner || !servisStavka) {
+    <p class="upozorenje">Za ovaj model stampaca nije povezan toner ili nema podatka o stanju.</p>
+  } @else {
+    <p class="zahtev-info">
+      <b>{{ data.zahtev.ime }} {{ data.zahtev.prezime }}</b> &middot; {{ data.zahtev.modelStampaca }}
+    </p>
+    <p class="info">
+      Toner: <b>{{ toner.oznaka }}</b> ({{ toner.boja }}) &middot;
+      Na stanju u <b>SERVIS</b>: <b>{{ servisStavka.kolicina }}</b>
+    </p>
+
+    <mat-form-field appearance="outline" class="kol">
+      <mat-label>Kolicina za isporuku</mat-label>
+      <input matInput type="number" min="1" [(ngModel)]="kolicina" />
+    </mat-form-field>
+
+    <!-- Transfer iz drugih magacina (prikaze se ako SERVIS nema dovoljno) -->
+    @if (prikaziTransfer && !dovoljno) {
+      <div class="transfer">
+        <p class="upozorenje">
+          U SERVIS-u nema dovoljno (potrebno {{ kolicina }}). Prebaci iz drugih magacina:
+        </p>
+        @if (ponude.length > 0) {
+          @for (p of ponude; track p.stavka.id) {
+            <div class="ponuda">
+              <span>{{ p.naziv }}: <b>{{ p.stavka.kolicina }}</b> kom</span>
+              <button mat-stroked-button color="primary" [disabled]="p.stavka.kolicina === 0 || dovoljno"
+                      (click)="prebaci(p)">
+                <mat-icon>swap_horiz</mat-icon> Prebaci u SERVIS
+              </button>
+            </div>
+          }
+        } @else {
+          <p class="upozorenje">Toner nije dostupan ni u jednom drugom magacinu.</p>
+        }
+      </div>
+    }
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="false" [disabled]="radi">Otkazi</button>
+  @if (!ucitavanje && toner && servisStavka) {
+    <button mat-raised-button color="primary" (click)="dostavi()" [disabled]="radi">
+      <mat-icon>check_circle</mat-icon>
+      {{ dovoljno ? 'Dostavi' : 'Proveri / Dostavi' }}
+    </button>
+  }
+</mat-dialog-actions>

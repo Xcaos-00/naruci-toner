@@ -1,0 +1,35 @@
+.admin-tabovi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: 1040px;
+  margin: 20px auto 0;
+  padding: 6px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+.admin-tabovi a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #5a6573;
+  font-weight: 500;
+  font-size: 14px;
+}
+.admin-tabovi a mat-icon {
+  font-size: 19px;
+  width: 19px;
+  height: 19px;
+}
+.admin-tabovi a:hover {
+  background: #f1f5fb;
+}
+/* Aktivan tab */
+.admin-tabovi a.aktivan {
+  background: #1565c0;
+  color: #fff;
+}

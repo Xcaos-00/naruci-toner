@@ -1,0 +1,33 @@
+<!-- Okvir admin dela: levo meni, desno sadrzaj stranice -->
+<mat-sidenav-container class="okvir">
+  <!-- Bocni meni (uvek otvoren, sa leve strane) -->
+  <mat-sidenav mode="side" opened class="meni">
+    <div class="meni-naslov">Admin panel</div>
+    <mat-nav-list>
+      <!-- routerLinkActive istakne stranicu na kojoj se nalazimo.
+           Za "Zahtevi" koristimo exact da ne ostane aktivan na podrutama. -->
+      <a mat-list-item routerLink="/admin" routerLinkActive="aktivan"
+         [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon matListItemIcon>inbox</mat-icon>
+        <span matListItemTitle>Zahtevi</span>
+      </a>
+      <a mat-list-item routerLink="/admin/upravljanje" routerLinkActive="aktivan">
+        <mat-icon matListItemIcon>print</mat-icon>
+        <span matListItemTitle>Stampaci i toneri</span>
+      </a>
+      <a mat-list-item routerLink="/admin/magacin" routerLinkActive="aktivan">
+        <mat-icon matListItemIcon>warehouse</mat-icon>
+        <span matListItemTitle>Magacinsko stanje</span>
+      </a>
+      <a mat-list-item routerLink="/admin/statistika" routerLinkActive="aktivan">
+        <mat-icon matListItemIcon>bar_chart</mat-icon>
+        <span matListItemTitle>Statistika</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Sadrzaj: ovde se prikazuje izabrana admin stranica -->
+  <mat-sidenav-content class="sadrzaj">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,133 @@
+.upravljanje {
+  padding: 16px 16px 48px;
+}
+.kolone {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 820px) {
+  .kolone {
+    grid-template-columns: 1fr;
+  }
+}
+.sekcija h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  color: #0d47a1;
+  margin: 18px 0 12px;
+}
+.forma-kartica,
+.lista-kartica {
+  border-radius: 14px !important;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.09) !important;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.forma-kartica h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+.polje {
+  width: 100%;
+  margin-bottom: 10px;
+}
+/* Dovoljno mesta da validacione poruke ne ulaze u dugme */
+.forma-kartica form {
+  display: flex;
+  flex-direction: column;
+}
+.forma-kartica button {
+  margin-top: 6px;
+  align-self: flex-start;
+}
+/* Stavke u listama */
+.stavka {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 4px;
+  border-bottom: 1px solid #eef0f3;
+}
+.stavka:last-child {
+  border-bottom: none;
+}
+.stavka .info {
+  display: flex;
+  flex-direction: column;
+}
+.stavka strong {
+  font-size: 14px;
+}
+.boja,
+.toner {
+  font-size: 12px;
+  color: #6b7480;
+  margin-left: 8px;
+}
+.toner {
+  margin-left: 0;
+}
+.mini-slika {
+  width: 48px;
+  height: 38px;
+  object-fit: contain;
+}
+.info {
+  flex: 1;
+}
+.boja {
+  flex: 1;
+}
+.prazno {
+  color: #777;
+  text-align: center;
+  padding: 12px;
+}
+
+/* Drag-drop zona za sliku stampaca */
+.oznaka-polja {
+  display: block;
+  font-size: 13px;
+  color: #5a6573;
+  margin: 4px 0 6px;
+}
+.slika-zona {
+  border: 2px dashed #b9c4d4;
+  border-radius: 12px;
+  padding: 18px;
+  text-align: center;
+  cursor: pointer;
+  color: #7a8699;
+  transition: border-color 0.15s, background 0.15s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.slika-zona:hover {
+  border-color: #1565c0;
+  background: #f3f8ff;
+}
+.slika-zona mat-icon {
+  font-size: 34px;
+  width: 34px;
+  height: 34px;
+  color: #9aa6b8;
+}
+.slika-zona .preview {
+  max-width: 140px;
+  max-height: 110px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.zona-tekst { font-size: 13px; }
+.slika-greska {
+  color: #c62828;
+  font-size: 12px;
+  margin: 4px 0 0;
+}

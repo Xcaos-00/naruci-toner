@@ -1,0 +1,130 @@
+<!-- Admin: upravljanje stampacima i tonerima -->
+
+<div class="upravljanje">
+  <div class="kolone">
+
+    <!-- ===== TONERI ===== -->
+    <section class="sekcija">
+      <h2><mat-icon>colorize</mat-icon> Toneri</h2>
+
+      <!-- Forma za dodavanje tonera -->
+      <mat-card class="forma-kartica">
+        <h3>Dodaj toner</h3>
+        <form [formGroup]="tonerForma" (ngSubmit)="dodajToner()">
+          <mat-form-field appearance="outline" class="polje">
+            <mat-label>Oznaka (sifra)</mat-label>
+            <input matInput formControlName="oznaka" placeholder="npr. HP CF259A" />
+            @if (tonerForma.controls['oznaka'].touched && tonerForma.controls['oznaka'].hasError('required')) {
+              <mat-error>Oznaka je obavezna.</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="polje">
+            <mat-label>Boja</mat-label>
+            <input matInput formControlName="boja" placeholder="npr. Crna" />
+            @if (tonerForma.controls['boja'].touched && tonerForma.controls['boja'].hasError('required')) {
+              <mat-error>Boja je obavezna.</mat-error>
+            }
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit">
+            <mat-icon>add</mat-icon> Dodaj toner
+          </button>
+        </form>
+      </mat-card>
+
+      <!-- Lista tonera -->
+      <mat-card class="lista-kartica">
+        @if (toneri.length === 0) {
+          <p class="prazno">Nema tonera.</p>
+        } @else {
+          @for (t of toneri; track t.id) {
+            <div class="stavka">
+              <div>
+                <strong>{{ t.oznaka }}</strong>
+                <span class="boja">{{ t.boja }}</span>
+              </div>
+              <button mat-icon-button color="warn" (click)="obrisiToner(t)" title="Obrisi">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          }
+        }
+      </mat-card>
+    </section>
+
+    <!-- ===== STAMPACI ===== -->
+    <section class="sekcija">
+      <h2><mat-icon>print</mat-icon> Stampaci</h2>
+
+      <!-- Forma za dodavanje stampaca -->
+      <mat-card class="forma-kartica">
+        <h3>Dodaj stampac</h3>
+        <form [formGroup]="stampacForma" (ngSubmit)="dodajStampac()">
+          <mat-form-field appearance="outline" class="polje">
+            <mat-label>Model</mat-label>
+            <input matInput formControlName="model" placeholder="npr. HP LaserJet M111" />
+            @if (stampacForma.controls['model'].touched && stampacForma.controls['model'].hasError('required')) {
+              <mat-error>Model je obavezan.</mat-error>
+            }
+          </mat-form-field>
+
+          <!-- Slika stampaca: prevuci-i-pusti ili klikni da izaberes fajl -->
+          <label class="oznaka-polja">Slika stampaca</label>
+          <div class="slika-zona" (drop)="onDrop($event)" (dragover)="onDragOver($event)" (click)="fajlInput.click()">
+            @if (slikaPreview) {
+              <img [src]="slikaPreview" class="preview" alt="pregled slike" />
+              <span class="zona-tekst">Klikni ili prevuci da promenis sliku</span>
+            } @else {
+              <mat-icon>cloud_upload</mat-icon>
+              <span class="zona-tekst">Prevuci sliku ovde ili klikni da izaberes</span>
+            }
+            <input #fajlInput type="file" accept="image/*" (change)="onFajl($event)" hidden />
+          </div>
+          @if (stampacForma.controls['slika'].touched && stampacForma.controls['slika'].hasError('required')) {
+            <p class="slika-greska">Slika je obavezna.</p>
+          }
+
+          <!-- Povezivanje stampaca sa tonerom -->
+          <mat-form-field appearance="outline" class="polje">
+            <mat-label>Toner</mat-label>
+            <mat-select formControlName="tonerId">
+              @for (t of toneri; track t.id) {
+                <mat-option [value]="t.id">{{ t.oznaka }} ({{ t.boja }})</mat-option>
+              }
+            </mat-select>
+            @if (stampacForma.controls['tonerId'].touched && stampacForma.controls['tonerId'].hasError('required')) {
+              <mat-error>Izaberite toner.</mat-error>
+            }
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit">
+            <mat-icon>add</mat-icon> Dodaj stampac
+          </button>
+        </form>
+      </mat-card>
+
+      <!-- Lista stampaca -->
+      <mat-card class="lista-kartica">
+        @if (stampaci.length === 0) {
+          <p class="prazno">Nema stampaca.</p>
+        } @else {
+          @for (s of stampaci; track s.id) {
+            <div class="stavka">
+              <img [src]="s.slika" [alt]="s.model" class="mini-slika" />
+              <div class="info">
+                <strong>{{ s.model }}</strong>
+                <!-- Prikaz povezanog tonera (preko tonerId) -->
+                <span class="toner">Toner: {{ tonerOznaka(s.tonerId) }}</span>
+              </div>
+              <button mat-icon-button color="warn" (click)="obrisiStampac(s)" title="Obrisi">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          }
+        }
+      </mat-card>
+    </section>
+
+  </div>
+</div>

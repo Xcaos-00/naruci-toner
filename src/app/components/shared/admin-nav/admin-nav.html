@@ -1,0 +1,15 @@
+<!-- Tabovi za navigaciju kroz admin deo -->
+<nav class="admin-tabovi">
+  <!-- [routerLinkActiveOptions] exact:true -> "Zahtevi" je aktivan
+       samo na tacno /admin, a ne i na podrutama -->
+  <a routerLink="/admin" routerLinkActive="aktivan"
+     [routerLinkActiveOptions]="{ exact: true }">
+    <mat-icon>inbox</mat-icon> Zahtevi
+  </a>
+  <a routerLink="/admin/upravljanje" routerLinkActive="aktivan">
+    <mat-icon>print</mat-icon> Stampaci i toneri
+  </a>
+  <a routerLink="/admin/statistika" routerLinkActive="aktivan">
+    <mat-icon>bar_chart</mat-icon> Statistika
+  </a>
+</nav>

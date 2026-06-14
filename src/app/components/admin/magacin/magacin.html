@@ -1,0 +1,50 @@
+<!-- Magacinsko stanje: matrica toneri (redovi) x magacini (kolone) -->
+<div class="magacin">
+  <div class="naslov-red">
+    <mat-icon>warehouse</mat-icon>
+    <h2>Magacinsko stanje</h2>
+  </div>
+
+  @if (ucitavanje) {
+    <div class="centar"><mat-spinner diameter="40"></mat-spinner></div>
+  } @else {
+    <mat-card class="tabela-kartica">
+      <p class="opis">Izmeni kolicine i klikni „Sacuvaj". <b>SERVIS</b> je glavni magacin
+        iz kojeg se toneri oduzimaju pri isporuci.</p>
+
+      <div class="tabela-okvir">
+        <table class="tabela">
+          <thead>
+            <tr>
+              <th class="leva">Toner</th>
+              <!-- Kolone = magacini; SERVIS istaknut -->
+              @for (m of magacini; track m.id) {
+                <th [class.servis]="m.glavni">{{ m.naziv }}</th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @for (red of redovi; track red.toner.id) {
+              <tr>
+                <td class="leva">
+                  <strong>{{ red.toner.oznaka }}</strong>
+                  <span class="boja">{{ red.toner.boja }}</span>
+                </td>
+                @for (celija of red.celije; track celija.magacinId) {
+                  <td>
+                    <!-- [(ngModel)] dvosmerno vezuje input sa kolicinom u stanju -->
+                    <input type="number" min="0" class="kol" [(ngModel)]="celija.kolicina" />
+                  </td>
+                }
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <button mat-raised-button color="primary" (click)="sacuvaj()" [disabled]="cuva" class="dugme">
+        <mat-icon>save</mat-icon> {{ cuva ? 'Cuvanje...' : 'Sacuvaj izmene' }}
+      </button>
+    </mat-card>
+  }
+</div>

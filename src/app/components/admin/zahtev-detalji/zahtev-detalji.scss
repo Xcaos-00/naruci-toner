@@ -1,0 +1,35 @@
+.detalji {
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.centar {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+.isporuka {
+  margin-top: 18px;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12) !important;
+  padding: 18px;
+}
+.isporuka h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-size: 17px;
+  color: #0d47a1;
+}
+.info { color: #3a4350; margin: 4px 0 14px; }
+.red-isporuka {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.kol-polje { width: 180px; }
+.dugme { height: 48px; margin-top: 4px; }
+.napomena { color: #8a93a0; font-size: 13px; margin: 6px 0 0; }
+.vec { color: #2e7d32; font-weight: 500; }

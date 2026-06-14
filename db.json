@@ -1,0 +1,338 @@
+{
+  "toneri": [
+    {
+      "id": 1,
+      "oznaka": "HP CF259A",
+      "boja": "Crna"
+    },
+    {
+      "id": 2,
+      "oznaka": "Canon 057",
+      "boja": "Crna"
+    },
+    {
+      "id": 3,
+      "oznaka": "Brother TN-2420",
+      "boja": "Crna"
+    },
+    {
+      "id": 4,
+      "oznaka": "Xerox 106R02778",
+      "boja": "Crna"
+    },
+    {
+      "id": 5,
+      "oznaka": "Samsung MLT-D111S",
+      "boja": "Crna"
+    },
+    {
+      "id": 6,
+      "oznaka": "Epson 102",
+      "boja": "Crna"
+    },
+    {
+      "oznaka": "TEST-1",
+      "boja": "Plava",
+      "id": 7
+    }
+  ],
+  "stampaci": [
+    {
+      "id": 1,
+      "model": "HP LaserJet Pro M404dn",
+      "slika": "stampaci/hp-m404.png",
+      "tonerId": 1
+    },
+    {
+      "id": 2,
+      "model": "HP LaserJet Pro MFP M428fdw",
+      "slika": "stampaci/hp-m428.png",
+      "tonerId": 1
+    },
+    {
+      "id": 3,
+      "model": "Canon i-SENSYS LBP223dw",
+      "slika": "stampaci/canon-lbp223.png",
+      "tonerId": 2
+    },
+    {
+      "id": 4,
+      "model": "Brother HL-L2350DW",
+      "slika": "stampaci/brother-l2350.png",
+      "tonerId": 3
+    },
+    {
+      "id": 5,
+      "model": "Xerox Phaser 3260",
+      "slika": "stampaci/xerox-3260.png",
+      "tonerId": 4
+    },
+    {
+      "id": 6,
+      "model": "Samsung Xpress M2070",
+      "slika": "stampaci/samsung-m2070.png",
+      "tonerId": 5
+    },
+    {
+      "id": 7,
+      "model": "Epson EcoTank L3250",
+      "slika": "stampaci/epson-l3250.png",
+      "tonerId": 6
+    }
+  ],
+  "zahtevi": [
+    {
+      "id": 1,
+      "idStampaca": "100245",
+      "ime": "Marko",
+      "prezime": "Markovic",
+      "modelStampaca": "HP LaserJet Pro M404dn",
+      "lokal": "+381 601112233",
+      "email": "marko.markovic@primer.rs",
+      "status": "dostavljen",
+      "datum": "2026-06-10T09:15:00.000Z"
+    },
+    {
+      "id": 2,
+      "idStampaca": "100377",
+      "ime": "Jovana",
+      "prezime": "Jovanovic",
+      "modelStampaca": "Canon i-SENSYS LBP223dw",
+      "lokal": "+381 642223344",
+      "email": "jovana.j@primer.rs",
+      "status": "u_obradi",
+      "datum": "2026-06-11T11:30:00.000Z"
+    },
+    {
+      "id": 3,
+      "idStampaca": "100412",
+      "ime": "Petar",
+      "prezime": "Petrovic",
+      "modelStampaca": "Brother HL-L2350DW",
+      "lokal": "+381 631234567",
+      "email": "petar.petrovic@primer.rs",
+      "status": "odobren",
+      "datum": "2026-06-12T14:05:00.000Z"
+    },
+    {
+      "id": 4,
+      "idStampaca": "100245",
+      "ime": "Marko",
+      "prezime": "Markovic",
+      "modelStampaca": "HP LaserJet Pro M404dn",
+      "lokal": "+381 601112233",
+      "email": "marko.markovic@primer.rs",
+      "status": "dostavljen",
+      "datum": "2026-06-05T08:00:00.000Z"
+    },
+    {
+      "id": 5,
+      "idStampaca": "100588",
+      "ime": "Marko",
+      "prezime": "Markovic",
+      "modelStampaca": "HP LaserJet Pro MFP M428fdw",
+      "lokal": "+381 651112299",
+      "email": "marko.markovic@primer.rs",
+      "status": "odobren",
+      "datum": "2026-06-13T10:20:00.000Z"
+    },
+    {
+      "id": 6,
+      "idStampaca": "100377",
+      "ime": "Jovana",
+      "prezime": "Jovanovic",
+      "modelStampaca": "Canon i-SENSYS LBP223dw",
+      "lokal": "+381 642223344",
+      "email": "jovana.j@primer.rs",
+      "status": "novo",
+      "datum": "2026-06-14T07:45:00.000Z"
+    },
+    {
+      "idStampaca": "1030001232",
+      "ime": "Stefan",
+      "prezime": "Ivkovic",
+      "modelStampaca": "HP LaserJet Pro MFP M428fdw",
+      "lokal": "15-45",
+      "email": "ivkoovicstefan@gmail.com",
+      "status": "odobren",
+      "datum": "2026-06-14T15:36:11.933Z",
+      "id": 7
+    },
+    {
+      "idStampaca": "123456",
+      "ime": "Stefan",
+      "prezime": "Ivkovic",
+      "modelStampaca": "Canon i-SENSYS LBP223dw",
+      "lokal": "+381601424850",
+      "email": "ivkoovicstefan@gmail.com",
+      "status": "odobren",
+      "datum": "2026-06-14T20:47:23.157Z",
+      "id": 8
+    }
+  ],
+  "magacini": [
+    {
+      "id": 1,
+      "naziv": "SERVIS",
+      "glavni": true
+    },
+    {
+      "id": 2,
+      "naziv": "Magacin Sever"
+    },
+    {
+      "id": 3,
+      "naziv": "Magacin Jug"
+    },
+    {
+      "id": 4,
+      "naziv": "Centralni magacin"
+    }
+  ],
+  "stanje": [
+    {
+      "id": 1,
+      "magacinId": 1,
+      "tonerId": 1,
+      "kolicina": 4
+    },
+    {
+      "id": 2,
+      "magacinId": 1,
+      "tonerId": 2,
+      "kolicina": 3
+    },
+    {
+      "id": 3,
+      "magacinId": 1,
+      "tonerId": 3,
+      "kolicina": 2
+    },
+    {
+      "id": 4,
+      "magacinId": 1,
+      "tonerId": 4,
+      "kolicina": 0
+    },
+    {
+      "id": 5,
+      "magacinId": 1,
+      "tonerId": 5,
+      "kolicina": 8
+    },
+    {
+      "id": 6,
+      "magacinId": 1,
+      "tonerId": 6,
+      "kolicina": 1
+    },
+    {
+      "id": 7,
+      "magacinId": 2,
+      "tonerId": 1,
+      "kolicina": 10
+    },
+    {
+      "id": 8,
+      "magacinId": 2,
+      "tonerId": 2,
+      "kolicina": 8
+    },
+    {
+      "id": 9,
+      "magacinId": 2,
+      "tonerId": 3,
+      "kolicina": 0
+    },
+    {
+      "id": 10,
+      "magacinId": 2,
+      "tonerId": 4,
+      "kolicina": 5
+    },
+    {
+      "id": 11,
+      "magacinId": 2,
+      "tonerId": 5,
+      "kolicina": 3
+    },
+    {
+      "id": 12,
+      "magacinId": 2,
+      "tonerId": 6,
+      "kolicina": 4
+    },
+    {
+      "id": 13,
+      "magacinId": 3,
+      "tonerId": 1,
+      "kolicina": 1
+    },
+    {
+      "id": 14,
+      "magacinId": 3,
+      "tonerId": 2,
+      "kolicina": 6
+    },
+    {
+      "id": 15,
+      "magacinId": 3,
+      "tonerId": 3,
+      "kolicina": 9
+    },
+    {
+      "id": 16,
+      "magacinId": 3,
+      "tonerId": 4,
+      "kolicina": 1
+    },
+    {
+      "id": 17,
+      "magacinId": 3,
+      "tonerId": 5,
+      "kolicina": 0
+    },
+    {
+      "id": 18,
+      "magacinId": 3,
+      "tonerId": 6,
+      "kolicina": 3
+    },
+    {
+      "id": 19,
+      "magacinId": 4,
+      "tonerId": 1,
+      "kolicina": 15
+    },
+    {
+      "id": 20,
+      "magacinId": 4,
+      "tonerId": 2,
+      "kolicina": 11
+    },
+    {
+      "id": 21,
+      "magacinId": 4,
+      "tonerId": 3,
+      "kolicina": 6
+    },
+    {
+      "id": 22,
+      "magacinId": 4,
+      "tonerId": 4,
+      "kolicina": 8
+    },
+    {
+      "id": 23,
+      "magacinId": 4,
+      "tonerId": 5,
+      "kolicina": 10
+    },
+    {
+      "id": 24,
+      "magacinId": 4,
+      "tonerId": 6,
+      "kolicina": 9
+    }
+  ]
+}

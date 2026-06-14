@@ -1,0 +1,46 @@
+<!-- Prikaz jednog zahteva + izbor novog statusa (presentational) -->
+<mat-card class="red-kartica">
+  <!-- Zaglavlje sa slikom stampaca i nazivom modela -->
+  <div class="zaglavlje">
+    <img [src]="slika" [alt]="zahtev.modelStampaca" class="slika" />
+    <div class="naslov">
+      <h3>{{ zahtev.modelStampaca }}</h3>
+      <!-- Trenutni status sa bojom: @switch bira klasu prema statusu -->
+      @switch (zahtev.status) {
+        @case ('odobren')    { <span class="oznaka zelena">{{ zahtev.status | status | uppercase }}</span> }
+        @case ('dostavljen') { <span class="oznaka plava">{{ zahtev.status | status | uppercase }}</span> }
+        @case ('odbijen')    { <span class="oznaka crvena">{{ zahtev.status | status | uppercase }}</span> }
+        @case ('u_obradi')   { <span class="oznaka zuta">{{ zahtev.status | status | uppercase }}</span> }
+        @default             { <span class="oznaka siva">{{ zahtev.status | status | uppercase }}</span> }
+      }
+    </div>
+  </div>
+
+  <mat-card-content>
+    <!-- Osnovni podaci zahteva -->
+    <div class="podatak"><span>ID stampaca:</span> {{ zahtev.idStampaca }}</div>
+    <div class="podatak"><span>Korisnik:</span> {{ zahtev.ime }} {{ zahtev.prezime }}</div>
+    <div class="podatak"><span>Lokal:</span> {{ zahtev.lokal }}</div>
+    <div class="podatak"><span>Email:</span> {{ zahtev.email }}</div>
+    <!-- Ugradjeni date pipe za lep prikaz datuma -->
+    <div class="podatak"><span>Datum:</span> {{ zahtev.datum | date:'dd.MM.yyyy. HH:mm' }}</div>
+
+    <hr class="linija" />
+
+    <!-- Izbor novog statusa -->
+    <mat-form-field appearance="outline" class="izbor">
+      <mat-label>Promeni status</mat-label>
+      <!-- [(ngModel)] = dvosmerno vezivanje sa promenljivom izabraniStatus -->
+      <mat-select [(ngModel)]="izabraniStatus">
+        @for (s of statusi; track s.vrednost) {
+          <mat-option [value]="s.vrednost">{{ s.naziv }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Klik emituje izabrani status ka roditeljskoj komponenti -->
+    <button mat-raised-button color="primary" (click)="sacuvaj()" class="dugme">
+      Sacuvaj status i posalji mejl
+    </button>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,138 @@
+<!-- =========================================================
+     TEMPLATE: Javna forma za zahtev za toner
+     - Hero zaglavlje + dve kolone (forma | slika izabranog stampaca)
+     - Novi control flow: @if i @for
+     ========================================================= -->
+
+<!-- HERO zaglavlje -->
+<header class="hero">
+  <div class="hero-sadrzaj">
+    <span class="hero-oznaka">Brza i jednostavna prijava</span>
+    <h1>Naruci toner za svoj stampac</h1>
+    <p>Popunite kratku formu i vas zahtev stize administratoru na obradu.
+       O svakoj promeni statusa obavestavamo vas mejlom.</p>
+  </div>
+</header>
+
+<div class="stranica">
+  <div class="raspored">
+
+    <!-- LEVA KOLONA: forma -->
+    <mat-card class="kartica">
+      <mat-card-header>
+        <div mat-card-avatar class="avatar"><mat-icon>print</mat-icon></div>
+        <mat-card-title>Zahtev za toner</mat-card-title>
+        <mat-card-subtitle>Sva polja su obavezna</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <form [formGroup]="forma" (ngSubmit)="posalji()">
+
+          <mat-form-field appearance="outline" class="polje">
+            <mat-label>ID broj stampaca</mat-label>
+            <mat-icon matPrefix>tag</mat-icon>
+            <input matInput formControlName="idStampaca" placeholder="npr. 100245" maxlength="6" />
+            @if (f['idStampaca'].touched && f['idStampaca'].hasError('required')) {
+              <mat-error>ID stampaca je obavezan.</mat-error>
+            }
+            @if (f['idStampaca'].touched && f['idStampaca'].hasError('idStampaca')) {
+              <mat-error>ID mora imati tacno 6 cifara.</mat-error>
+            }
+          </mat-form-field>
+
+          <!-- Ime i prezime u istom redu na sirem ekranu -->
+          <div class="red-dva">
+            <mat-form-field appearance="outline" class="polje">
+              <mat-label>Ime</mat-label>
+              <input matInput formControlName="ime" />
+              @if (f['ime'].touched && f['ime'].hasError('required')) {
+                <mat-error>Ime je obavezno.</mat-error>
+              }
+              @if (f['ime'].touched && f['ime'].hasError('minlength')) {
+                <mat-error>Najmanje 2 slova.</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="polje">
+              <mat-label>Prezime</mat-label>
+              <input matInput formControlName="prezime" />
+              @if (f['prezime'].touched && f['prezime'].hasError('required')) {
+                <mat-error>Prezime je obavezno.</mat-error>
+              }
+              @if (f['prezime'].touched && f['prezime'].hasError('minlength')) {
+                <mat-error>Najmanje 2 slova.</mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <!-- Model stampaca: dropdown sa malom slikom (thumbnail) -->
+          <mat-form-field appearance="outline" class="polje">
+            <mat-label>Model stampaca</mat-label>
+            <mat-icon matPrefix>print</mat-icon>
+            <mat-select formControlName="modelStampaca">
+              @for (s of (stampaci$ | async); track s.id) {
+                <mat-option [value]="s.model">
+                  <span class="opcija">
+                    <img [src]="s.slika" [alt]="s.model" class="thumb" />
+                    {{ s.model }}
+                  </span>
+                </mat-option>
+              }
+            </mat-select>
+            @if (f['modelStampaca'].touched && f['modelStampaca'].hasError('required')) {
+              <mat-error>Izaberite model stampaca.</mat-error>
+            }
+          </mat-form-field>
+
+          <div class="red-dva">
+            <mat-form-field appearance="outline" class="polje">
+              <mat-label>Telefon</mat-label>
+              <mat-icon matPrefix>call</mat-icon>
+              <input matInput formControlName="lokal" placeholder="+381 601424850" />
+              @if (f['lokal'].touched && f['lokal'].hasError('required')) {
+                <mat-error>Telefon je obavezan.</mat-error>
+              }
+              @if (f['lokal'].touched && f['lokal'].hasError('telefon')) {
+                <mat-error>Format: +381 601424850 (bez 0 posle 381).</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="polje">
+              <mat-label>Email</mat-label>
+              <mat-icon matPrefix>mail</mat-icon>
+              <input matInput type="email" formControlName="email" placeholder="ime@firma.rs" />
+              @if (f['email'].touched && f['email'].hasError('required')) {
+                <mat-error>Email je obavezan.</mat-error>
+              }
+              @if (f['email'].touched && f['email'].hasError('email')) {
+                <mat-error>Unesite ispravnu email adresu.</mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <button mat-raised-button color="primary" type="submit" [disabled]="saljeSe" class="dugme">
+            <mat-icon>send</mat-icon>
+            {{ saljeSe ? 'Slanje...' : 'Posalji zahtev' }}
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- DESNA KOLONA: slika izabranog stampaca -->
+    <mat-card class="kartica-slika">
+      @if (izabraniStampac) {
+        <!-- Kada je model izabran -> prikazi njegovu sliku i naziv -->
+        <img [src]="izabraniStampac.slika" [alt]="izabraniStampac.model" class="velika-slika" />
+        <h3>{{ izabraniStampac.model }}</h3>
+        <p class="napomena">Izabrani model stampaca</p>
+      } @else {
+        <!-- Dok model nije izabran -> prijateljska poruka -->
+        <div class="prazno-slika">
+          <mat-icon>print</mat-icon>
+          <p>Izaberite model stampaca<br />da vidite sliku</p>
+        </div>
+      }
+    </mat-card>
+
+  </div>
+</div>

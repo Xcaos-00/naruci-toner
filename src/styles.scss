@@ -1,0 +1,15 @@
+/* =========================================================
+   GLOBALNI STILOVI
+   - Tema Angular Material-a se ucitava preko angular.json
+     (prebuilt tema "azure-blue").
+   ========================================================= */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #1f2733;
+}
+* {
+  box-sizing: border-box;
+}

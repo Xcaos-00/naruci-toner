@@ -1,0 +1,60 @@
+<!--
+  STILIZOVAN MEJL ZA "NARUCI TONER"
+  ----------------------------------
+  Kopiraj CEO sadrzaj ispod u EmailJS:
+    EmailJS -> Email Templates -> tvoj template -> dugme "Edit Content"
+    -> prebaci na "Code editor" (</>) -> nalepi ovo umesto postojeceg.
+  U podesavanjima samog template-a postavi:
+    Subject  (naslov mejla):  {{naslov}}
+    To Email (primalac):      {{to_email}}
+  Promenljive koje ovaj sablon koristi (salje ih aplikacija):
+    {{to_name}}, {{status_tekst}}, {{poruka}}, {{model_stampaca}}, {{boja}}, {{godina}}
+-->
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#eef3f9; padding:24px 0; font-family:Arial,Helvetica,sans-serif;">
+  <tr>
+    <td align="center">
+      <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border-radius:14px; overflow:hidden; box-shadow:0 8px 24px rgba(0,0,0,0.10);">
+
+        <!-- Zaglavlje -->
+        <tr>
+          <td style="background:#0d47a1; padding:22px 28px;">
+            <span style="color:#ffffff; font-size:20px; font-weight:bold;">&#128424; Naruci Toner</span>
+          </td>
+        </tr>
+
+        <!-- Telo -->
+        <tr>
+          <td style="padding:28px;">
+            <p style="font-size:16px; color:#1f2733; margin:0 0 16px;">Postovani {{to_name}},</p>
+
+            <!-- Oznaka statusa (boja stize iz aplikacije kroz {{boja}}) -->
+            <p style="margin:0 0 18px;">
+              <span style="display:inline-block; background:{{boja}}; color:#ffffff; font-size:13px; font-weight:bold; padding:6px 14px; border-radius:999px;">
+                {{status_tekst}}
+              </span>
+            </p>
+
+            <p style="font-size:15px; color:#3a4350; line-height:1.6; margin:0 0 20px;">{{poruka}}</p>
+
+            <!-- Detalj o modelu -->
+            <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f7fb; border-radius:10px;">
+              <tr>
+                <td style="padding:14px 18px; font-size:14px; color:#5a6573;">
+                  <strong style="color:#0d47a1;">Model stampaca:</strong> {{model_stampaca}}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Podnozje -->
+        <tr>
+          <td style="background:#f4f7fb; padding:16px 28px; text-align:center;">
+            <span style="font-size:12px; color:#8a93a0;">Ovo je automatska poruka sistema Naruci Toner &bull; {{godina}}</span>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>

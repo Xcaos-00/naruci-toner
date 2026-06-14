@@ -1,0 +1,28 @@
+.okvir {
+  /* Visina = ceo ekran minus gornja traka (64px) */
+  height: calc(100vh - 64px);
+  background: transparent;
+}
+.meni {
+  width: 230px;
+  background: #ffffff;
+  border-right: 1px solid #e6e9ef;
+  padding-top: 8px;
+}
+.meni-naslov {
+  font-weight: 700;
+  color: #0d47a1;
+  padding: 12px 16px 8px;
+  font-size: 16px;
+}
+/* Aktivna stavka menija */
+.meni .aktivan {
+  background: #e8f1fc;
+  color: #0d47a1;
+}
+.meni .aktivan mat-icon {
+  color: #0d47a1;
+}
+.sadrzaj {
+  background: linear-gradient(180deg, #eef3f9 0%, #f6f8fb 100%);
+}

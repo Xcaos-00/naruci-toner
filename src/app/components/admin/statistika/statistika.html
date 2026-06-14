@@ -1,0 +1,60 @@
+<!-- Admin: statistika sa grafikonima -->
+
+<div class="statistika">
+  <div class="naslov-red">
+    <mat-icon>bar_chart</mat-icon>
+    <h2>Statistika</h2>
+  </div>
+
+  <!-- Spinner dok se ucitava -->
+  @if (ucitavanje) {
+    <div class="centar"><mat-spinner diameter="40"></mat-spinner></div>
+  }
+
+  <!-- Sadrzaj je UVEK u DOM-u (samo skriven dok traje ucitavanje preko
+       [hidden]) - zato su canvas elementi uvek dostupni za Chart.js. -->
+  <div class="sadrzaj" [hidden]="ucitavanje">
+    <!-- Metricke kartice -->
+    <div class="kartice">
+      <div class="metrika">
+        <span class="broj">{{ ukupnoZahteva }}</span>
+        <span class="opis">Ukupno zahteva</span>
+      </div>
+      <div class="metrika">
+        <span class="broj">{{ brojStampaca }}</span>
+        <span class="opis">Stampaca</span>
+      </div>
+      <div class="metrika">
+        <span class="broj">{{ brojTonera }}</span>
+        <span class="opis">Tonera</span>
+      </div>
+      <div class="metrika">
+        <span class="broj">{{ brojKorisnika }}</span>
+        <span class="opis">Korisnika</span>
+      </div>
+    </div>
+
+    <!-- Grafikoni -->
+    <div class="grafikoni">
+      <mat-card class="grafik">
+        <h3>Raspodela po statusu</h3>
+        <div class="platno"><canvas #statusCanvas></canvas></div>
+      </mat-card>
+
+      <mat-card class="grafik">
+        <h3>Najtrazeniji stampaci</h3>
+        <div class="platno"><canvas #stampacCanvas></canvas></div>
+      </mat-card>
+
+      <mat-card class="grafik">
+        <h3>Najaktivniji korisnici</h3>
+        <div class="platno"><canvas #korisnikCanvas></canvas></div>
+      </mat-card>
+
+      <mat-card class="grafik">
+        <h3>Najtrazeniji toneri</h3>
+        <div class="platno"><canvas #tonerCanvas></canvas></div>
+      </mat-card>
+    </div>
+  </div>
+</div>
