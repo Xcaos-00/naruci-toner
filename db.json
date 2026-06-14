@@ -168,6 +168,17 @@
       "status": "odobren",
       "datum": "2026-06-14T20:47:23.157Z",
       "id": 8
+    },
+    {
+      "idStampaca": "102354",
+      "ime": "Nevena",
+      "prezime": "Ilic",
+      "modelStampaca": "Brother HL-L2350DW",
+      "lokal": "+381601424850",
+      "email": "ivkoovicstefan@gmail.com",
+      "status": "novo",
+      "datum": "2026-06-14T22:05:13.141Z",
+      "id": 9
     }
   ],
   "magacini": [

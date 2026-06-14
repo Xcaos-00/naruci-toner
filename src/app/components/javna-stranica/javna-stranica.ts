@@ -5,13 +5,14 @@
 //  novi zahtev na server. Forma je "Reactive Forms" sa validacijom.
 //  Kada korisnik izabere model, prikazujemo sliku tog stampaca.
 // =============================================================
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   FormBuilder,
   FormGroup,
   Validators,
   ReactiveFormsModule,
+  FormGroupDirective,
 } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -55,6 +56,7 @@ export class JavnaStranica implements OnInit {
   private zahtevService = inject(ZahtevService);
   private emailService = inject(EmailService);
   private snackBar = inject(MatSnackBar);
+  private cdr = inject(ChangeDetectorRef);
 
   // Lista stampaca kao Observable - u template-u je prikazujemo
   // pomocu | async pipe-a (ugradjeni pipe koji se sam pretplati i odjavi).
@@ -65,6 +67,10 @@ export class JavnaStranica implements OnInit {
   private stampaci: Stampac[] = [];
 
   // Da li je slanje u toku (da iskljucimo dugme i sprecimo dupli klik).
+  // Referenca na direktivu forme - treba nam da resetujemo i 'submitted'
+  // stanje (inace posle slanja sva polja ostanu crvena).
+  @ViewChild(FormGroupDirective) private formDir!: FormGroupDirective;
+
   saljeSe = false;
 
   // Reaktivna forma - definisemo polja i njihova pravila validacije.
@@ -109,8 +115,10 @@ export class JavnaStranica implements OnInit {
         this.snackBar.open('Zahtev je uspesno poslat!', 'U redu', { duration: 4000 });
         // Potvrdni mejl o prijemu zahteva (ne blokira prikaz ako ne uspe).
         this.emailService.posaljiObavestenje(z).catch(() => {});
-        this.forma.reset();
+        // resetForm() ocisti i vrednosti i 'submitted' -> nema crvenih polja.
+        this.formDir.resetForm();
         this.saljeSe = false;
+        this.cdr.detectChanges();
       },
       error: (greska) => {
         this.snackBar.open(greska.message, 'Zatvori', { duration: 5000 });
